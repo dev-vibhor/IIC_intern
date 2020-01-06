@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+	
+	function testData() {
+	var strText = document.getElementById("textone").value;          
+            var strText1 = document.getElementById("textTWO").value;
+			var x = getOption();
+			var y = getOption1();
+			if(strText==NULL||strText1==NULL ||x==NULL ||y==NULL )
+			{alert("Invalid data or empty data");
+			}
+			else{testVariable();}
+	}
+        function testVariable() {
+		alert("Response Recorded");
+		
+            var strText = document.getElementById("textone").value;          
+            var strText1 = document.getElementById("textTWO").value;
+			var x = getOption();
+			var y = getOption1();
+					
+
+            var result = " Name: " + strText+"||" + " Email: " + strText1 + "||" +" College: " + x + "||" + " Course: " + y ;
+			document.getElementById('spanResult').textContent = result;
+			const textToBLOB = new Blob([result], { type: 'text/plain' });
+			const sFileName = strText+"_"+'Response.txt';	   // The file to save the data.
+		if(sFileName!="_Response.txt" )
+		{
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click(); 
+		}
+		
+        } 
+		
+		
+
+		function getOption() { 
+            selectElement =  
+                    document.querySelector('#select1'); 
+                    
+            output = selectElement.value; 
+         
+            return output;
+        } 
+		
+		function getOption1() { 
+            selectElement1 =  
+                    document.querySelector('#select2'); 
+                    
+            output1 = selectElement1.value; 
+         
+            return output1;
+        } 
+    </script>
+</head>
+<body> 
+<form action="" method="get">
+<label for="male">Name</label>
+    <input type="text" id="textone" required/></br></br>
+	<label for="male">Mail</label>
+    <input type="email" id="textTWO" required/></br></br>
+	<label for="male">College</label>
+	<select id="select1" required> 
+<option value="none" selected disabled hidden>Select College </option>
+<option value="Indian Institute of Technology Madras">Indian Institute of Technology Madras</option>
+<option value="Indian Institute of Technology Bombay">Indian Institute of Technology Bombay</option>
+<option value="Indian Institute of Technology Kharagpur">Indian Institute of Technology Kharagpur</option>
+<option value="Indian Institute of Technology Delhi">Indian Institute of Technology Delhi</option>
+<option value="Indian Institute of Technology Kanpur">Indian Institute of Technology Kanpur</option>
+<option value="Indian Institute of Technology Roorkee">Indian Institute of Technology Roorkee</option>
+<option value="Indian Institute of Technology Guwahati">Indian Institute of Technology Guwahati</option>
+</select></br></br>
+		<label for="male" required>Course</label>
+		<select id="select2"> 
+		<option value="none" selected disabled hidden>Select Course</option>
+            <option value="IT">IT</option> 
+            <option value="Mechanical">Mechanical</option> 
+            <option value="Civil">Civil</option> 
+        </select></br></br>
+    <button  onclick="testVariable()">Submit</button> <br />
+    <span id="spanResult">
+
+    </span>
+   </form>
+     
+</body>
+</html>
